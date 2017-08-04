@@ -61,7 +61,8 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Utils\JsonUtilsTest.cs" />
+    <Compile Include="Collections\CollectionUtilsTest.cs" />
+    <Compile Include="Collections\GenericDictionaryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

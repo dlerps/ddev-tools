@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
-using DDev.Tools.Utils;
+using DDev.Tools;
 using NUnit.Framework;
 using FluentAssertions;
 
@@ -9,7 +9,7 @@ namespace DDev.Tools.Test
 {
     [TestFixture]
     [Author("Daniel Lerps")]
-    public class JsonUtilsTest
+    public class CollectionUtilsTest
     {
         /// <summary>
         /// Tests the generic parsing of dictionary values with strings

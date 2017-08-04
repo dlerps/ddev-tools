@@ -2,6 +2,16 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard1.3;net46</TargetFrameworks>
+    <Authors>Daniel Lerps</Authors>
+    <Company />
+    <Product />
+    <Description>Collection of helpful tools and utilities for collections and debug outputs.</Description>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <PackageLicenseUrl>https://github.com/dlerps/ddev-tools/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/dlerps/ddev-tools</PackageProjectUrl>
+    <RepositoryType>https://github.com/dlerps/ddev-tools</RepositoryType>
+    <PackageTags>tools,debugging,utilities,collections</PackageTags>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
 </Project>

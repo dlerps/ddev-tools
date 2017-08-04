@@ -16,7 +16,8 @@ namespace DDev.Tools.Utils
         /// <param name="key"></param>
         /// <param name="defaultVal"></param>
         /// <returns></returns>
-        public static PType ParseValue<PType>(this IDictionary<string, object> vals, string key, PType defaultVal = default(PType))
+        [Obsolete("Use the CollectionUtils instead")]
+        public static PType ParseValue<PType>(IDictionary<string, object> vals, string key, PType defaultVal = default(PType))
         {
             if(vals.ContainsKey(key) && vals[key] is PType)
                 return (PType) vals[key];
