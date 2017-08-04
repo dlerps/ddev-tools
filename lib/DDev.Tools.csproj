@@ -6,4 +6,8 @@
     <RootNamespace>DDev.Tools</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="src\utils\collections\" />
+  </ItemGroup>
+
 </Project>
