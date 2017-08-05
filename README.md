@@ -28,10 +28,10 @@ dict.Add("key2", 2);
 dict.Add("key3", 3.0);
 dict.Add("key4", DateTime.UtcNow);
 
-var val1 = dict.Get<string>("key1") // "stringValue"
-var val2 = dict.Get<int>("key2") // 2
-var val3 = dict.Get<double>("key3") // 3.0
-var val4 = dict.Get<DateTime>("key4") // {1/1/2017 - 12:00:00}
+var val1 = dict.Get<string>("key1"); // "stringValue"
+var val2 = dict.Get<int>("key2"); // 2
+var val3 = dict.Get<double>("key3"); // 3.0
+var val4 = dict.Get<DateTime>("key4"); // {1/1/2017 - 12:00:00}
 ```
 
 ### Convention Regex
