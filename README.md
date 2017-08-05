@@ -1,4 +1,4 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/tl89uy830l97qq6o?svg=true)](https://ci.appveyor.com/project/dlerps/ddev-tools)
+[![Build status](https://ci.appveyor.com/api/projects/status/tl89uy830l97qq6o?svg=true)](https://ci.appveyor.com/project/dlerps/ddev-tools) [![NuGet](https://img.shields.io/nuget/dt/DDev.Tools.Standard.svg)](https://preview.nuget.org/packages/DDev.Tools.Standard/)
 # DDev Tools
 **A collection of .Net tools and helper functions. Compatible with `.Net Standard 1.3` and `.Net Framework 4.6.1`**
 
