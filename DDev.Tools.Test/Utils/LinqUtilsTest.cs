@@ -19,8 +19,8 @@ namespace DDev.Tools.Test
         /// </summary>
         /// <param name="key"></param>
         /// <param name="values"></param>
-        [TestCase(1, new string[] { "astapor", "mereen", "bravos" })]
-        [TestCase(6, new string[] { "kings landing", "winterfell" })]
+        [TestCase(1, new string[] { "astapor", "meereen", "braavos" })]
+        [TestCase(6, new string[] { "kings landing", "winterfell", "pentos" })]
         public void ToClusteredDictionary_ShouldCreateSubset_WhenKeyMatches(int key, string[] values)
         {
             List<TestObject<int, string>> testObjects = new List<TestObject<int, string>>(values.Length);
@@ -37,11 +37,12 @@ namespace DDev.Tools.Test
                 .First()
                 .Value
                 .Should()
-                .HaveCount(2);
+                .HaveCount(values.Count());
 
             testObjects.ToClusteredDictionary(v => v.Key)
                 .First()
                 .Value
+                .Select(t => t.Value)
                 .Should()
                 .Contain(values);
         }
