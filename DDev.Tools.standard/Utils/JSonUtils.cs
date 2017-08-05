@@ -30,7 +30,8 @@ namespace DDev.Tools.Utils
         /// </summary>
         /// <param name="IDictionary<string"></param>
         /// <param name="vals"></param>
-        public static void PrintDictionary(this IDictionary<string, object> vals)
+        [Obsolete("Use the CollectionUtils instead")]
+        public static void PrintDictionary(IDictionary<string, object> vals)
         {
             foreach(var pair in vals)
             {

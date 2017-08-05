@@ -22,5 +22,18 @@ namespace DDev.Tools
             return defaultVal;
         }
 
+        // <summary>
+        /// Prints the contents of a JSon Dictionary on the StdOut console.
+        /// </summary>
+        /// <param name="IDictionary<string"></param>
+        /// <param name="vals"></param>
+        public static void PrintDictionary<K>(this IDictionary<K, object> vals)
+        {
+            foreach (KeyValuePair<K, object> pair in vals)
+            {
+                Console.WriteLine(String.Format("{0} -> {1}", pair.Key, pair.Value));
+            }
+        }
+
     }
 }
