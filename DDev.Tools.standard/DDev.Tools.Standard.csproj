@@ -5,13 +5,13 @@
     <Authors>Daniel Lerps</Authors>
     <Company />
     <Product />
-    <Description>Collection of tools and utilities for collections and debug outputs.</Description>
+    <Description>Collection of tools and utilities for collections, Linq and debug outputs.</Description>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <PackageLicenseUrl>https://github.com/dlerps/ddev-tools/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/dlerps/ddev-tools</PackageProjectUrl>
     <RepositoryType>https://github.com/dlerps/ddev-tools</RepositoryType>
     <PackageTags>tools,debugging,utilities,collections</PackageTags>
-    <Version>1.2.0</Version>
+    <Version>1.3.0</Version>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageIconUrl>https://locksmith.lerps.de/ddev.png</PackageIconUrl>
   </PropertyGroup>
