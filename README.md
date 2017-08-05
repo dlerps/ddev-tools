@@ -2,7 +2,7 @@
 # DDev Tools
 **A collection of .Net tools and helper functions. Compatible with .Net Standard 1.3 and .Net Framework 4.6.1**
 
-##How to use
+## How to use
 The library is available on NuGet.org:
  
 Install with package manager:
@@ -11,11 +11,11 @@ Install with package manager:
 Install with donet CLI:
 `> dotnet add package DDev.Tools.Standard`
 
-##Content
-###CollectionUtils
+## Content
+### CollectionUtils
 Collection utilities are a set of extension method. Currently there are only method for IDictionary.
 
-###GenericDictionary
+### GenericDictionary
 A dictionary implementation which only takes a generic type for the key and accepts all types of values.
 
 ```C#
@@ -34,7 +34,7 @@ var val3 = dict.Get<double>("key3") // 3.0
 var val4 = dict.Get<DateTime>("key4") // {1/1/2017 - 12:00:00}
 ```
 
-###Convention Regex
+### Convention Regex
 Some convenience regex check for common convention styles are located in `ConventionRegex` as extension method of `string`.
 
 ```C#
@@ -58,5 +58,6 @@ bool neg2 = s2.IsKebabCase(); // RegexLetterCase.LowerOnly by default
 bool neg3 = s3.IsLowerCamelCase();
 ```
 
-##How to contribute
+## How to contribute
 Any helpful utilities which are always welcome. Please fork the master branch and use pull requests if you would like to add some.
+Please unit test your code and make sure existing unit tests continue to work.
