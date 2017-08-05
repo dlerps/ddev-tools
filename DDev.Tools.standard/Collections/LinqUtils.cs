@@ -9,26 +9,27 @@ namespace DDev.Tools
         /// <summary>
         /// Transforms an enumerable to a clustered dictionary.
         /// Uses a function to determine by which key to cluster the collection.
+        /// 
+        /// Pass an optional fill list that is used to add keys that are never occuring.
         /// </summary>
         /// <typeparam name="K"></typeparam>
         /// <typeparam name="V"></typeparam>
-        /// <param name="src"></param>
+        /// <param name="me"></param>
         /// <param name="keySelector"></param>
         /// <param name="fillupKeys"></param>
         /// <returns></returns>
         public static IDictionary<K, List<V>> ToClusteredDictionary<K, V>(
-            this IEnumerable<V> src, 
+            this IEnumerable<V> me, 
             Func<V, K> keySelector,
-            List<K> fillupKeys)
-            where V : new()
+            List<K> fillupKeys = null)
         {
             IDictionary<K, List<V>> dict = new Dictionary<K, List<V>>();
 
-            if (src == null)
+            if (me == null)
                 return dict;
             
             // iterate through all values an add it to a key set
-            foreach (V value in src)
+            foreach (V value in me)
             {
                 K key = keySelector(value);
 
