@@ -1,9 +1,9 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/tl89uy830l97qq6o?svg=true)](https://ci.appveyor.com/project/dlerps/ddev-tools)
 # DDev Tools
-**A collection of .Net tools and helper functions. Compatible with .Net Standard 1.3 and .Net Framework 4.6.1**
+**A collection of .Net tools and helper functions. Compatible with `.Net Standard 1.3` and `.Net Framework 4.6.1`**
 
 ## How to use
-The library is available on NuGet.org:
+The library is available on [NuGet] and can be added to any project compatible with the target frameworks.
  
 Install with package manager:
 `PM > Install-Package DDev.Tools.Standard`
@@ -13,7 +13,7 @@ Install with donet CLI:
 
 ## Content
 ### CollectionUtils
-Collection utilities are a set of extension method. Currently there are only method for IDictionary.
+Collection utilities are a set of extension methods. Currently there are only methods for `IDictionary`.
 
 ### GenericDictionary
 A dictionary implementation which only takes a generic type for the key and accepts all types of values.
@@ -61,3 +61,9 @@ bool neg3 = s3.IsLowerCamelCase();
 ## How to contribute
 Any helpful utilities which are always welcome. Please fork the master branch and use pull requests if you would like to add some.
 Please unit test your code and make sure existing unit tests continue to work.
+
+### CI
+The master branch is automatically built on AppVeyor. All unit tests are executed and a new library version is pushed to [NuGet].
+
+[//]: #References
+[NuGet]:<https://preview.nuget.org/packages/DDev.Tools.Standard/>
