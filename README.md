@@ -44,23 +44,61 @@ string s0 = "lowerCamelCase";
 string s1 = "UpperCamelCaseWith1Number";
 string s2 = "mixed-Kebab-Case";
 string s3 = "UPPER_SNAKE_CASE";
+string s4 = "dot.notation";
 
 // pos0 - pos3 -> true
 bool pos0 = s0.IsLowerCamelCase();
 bool pos1 = s1.IsUpperCamelCase(allowNumbers: true, maxLength: 30);
-bool pos2 = s2.IsKebabStyle(RegexLetterCase.Both);
-bool pos3 = s3.IsSnakeCase(RegexLetterCase.CaptialOnly);
+bool pos2 = s2.IsKebabStyle(allowedLetters: RegexLetterCase.Both);
+bool pos3 = s3.IsSnakeCase(allowedLetters: RegexLetterCase.CaptialOnly);
+bool pos4 = s4.IsDotNotation();
 
 // neg0 - neg3 -> false
 bool neg0 = s0.IsUpperCamelCase();
 bool neg1 = s1.IsUpperCamelCase(); // maxLength is 20 by default
 bool neg2 = s2.IsKebabCase(); // RegexLetterCase.LowerOnly by default
 bool neg3 = s3.IsLowerCamelCase();
+bool neg4 = s4.IsDotNotation(allowedLetters: RegexLetterCase.CaptialOnly);
+```
+
+### LinqUtils
+The `LinqUtils` class only includes a single extension method for the `IEnumerable` interface. It Allows to split up the flat collection in an `IDictionary`.
+You can select a common attribute of the items with a lambda expression. All items with the same attributes are afterwards added to a `List` which is the value to the shared attributed as a key.
+
+```C#
+using DDev.Tools;
+
+internal class FictionCharacter
+{
+    public string Franchise { get; set; }
+    public string Name { get; set; }
+    // ...
+}
+
+var idols = new List<FictionCharacter>();
+list.Add(new TestObject("Star Wars", "Luke Skywalker");
+list.Add(new TestObject("Star Wars", "Han Solo");
+list.Add(new TestObject("LotR", "Frodo");
+list.Add(new TestObject("Star Wars", "Leia Organa");
+list.Add(new TestObject("LotR", "Gandalf");
+list.Add(new TestObject("Friends", "Joey Tribbiani");
+
+var clustered = list.ToClusteredDictionary(attr => attr.Franchise);
+// clustered:
+// { 
+//      "Star Wars" -> [ "Luke Skywalker", "Han Solo", "Leia" ],
+//      "LotR" -> [ "Frodo", "Gandalf" ],
+//      "Friends" -> [ "Joey Tribbiani" ],
+// }
 ```
 
 ## How to contribute
 Any helpful utilities which are always welcome. Please fork the master branch and use pull requests if you would like to add some.
-Please unit test your code and make sure existing unit tests continue to work.
+
+Just keep in mind:
+ - Write unit tests for your code 
+ - Make sure existing unit tests continue to work.
+ - Document the added functionality
 
 ### CI
 The master branch is automatically built on AppVeyor. All unit tests are executed and a new library version is pushed to [NuGet].
