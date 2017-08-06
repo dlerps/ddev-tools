@@ -27,7 +27,7 @@ namespace DDev.Tools
             bool allowNumbers = true,
             RegexLetterCase allowedLetters = RegexLetterCase.LowerOnly)
         {
-            return KebabOrSnakeCaseCheck(check, true, minLength, maxLength, allowNumbers, allowedLetters);
+            return CheckSymbolSeparatedCase(check, '-', minLength, maxLength, allowNumbers, allowedLetters);
         }
 
         /// <summary>
@@ -40,13 +40,32 @@ namespace DDev.Tools
         /// <param name="allowNumbers"></param>
         /// <returns></returns>
         public static bool IsSnakeCase(
-            this string check, 
-            int minLength = 2, 
-            int maxLength = 20, 
+            this string check,
+            int minLength = 2,
+            int maxLength = 20,
             bool allowNumbers = true,
             RegexLetterCase allowedLetters = RegexLetterCase.LowerOnly)
         {
-            return KebabOrSnakeCaseCheck(check, false, minLength, maxLength, allowNumbers, allowedLetters);
+            return CheckSymbolSeparatedCase(check, '_', minLength, maxLength, allowNumbers, allowedLetters);
+        }
+
+        /// <summary>
+        /// Checks if a string is in dot.notation.
+        /// Allows to set length constraints and include/exclude numbers.
+        /// </summary>
+        /// <param name="check"></param>
+        /// <param name="minLength"></param>
+        /// <param name="maxLength"></param>
+        /// <param name="allowNumbers"></param>
+        /// <returns></returns>
+        public static bool IsDotNotation(
+            this string check,
+            int minLength = 2,
+            int maxLength = 20,
+            bool allowNumbers = true,
+            RegexLetterCase allowedLetters = RegexLetterCase.LowerOnly)
+        {
+            return CheckSymbolSeparatedCase(check, '.', minLength, maxLength, allowNumbers, allowedLetters);
         }
 
         /// <summary>
@@ -58,9 +77,9 @@ namespace DDev.Tools
         /// <param name="maxLength"></param>
         /// <param name="allowNumbers"></param>
         /// <returns></returns>
-        private static bool KebabOrSnakeCaseCheck(
+        private static bool CheckSymbolSeparatedCase(
             string check, 
-            bool kebab, 
+            char symbol, 
             int minLength, 
             int maxLength, 
             bool allowNumbers,
@@ -72,8 +91,7 @@ namespace DDev.Tools
 
             if (len < minLength || len > maxLength)
                 return false;
-
-            string separator = kebab ? "-" : "_";
+            
             string numPattern = allowNumbers ? "0-9" : String.Empty;
             string letterPattern = String.Empty;
 
@@ -93,7 +111,7 @@ namespace DDev.Tools
                     break;
             }
 
-            string pattern = String.Format("^[{2}{0}]+([{1}]{{1}}[{2}{0}]+)*$", numPattern, separator, letterPattern);
+            string pattern = String.Format("^[{2}{0}]+([{1}]{{1}}[{2}{0}]+)*$", numPattern, symbol, letterPattern);
 
             return check.IsRegexMatch(pattern);
         }

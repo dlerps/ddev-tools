@@ -98,6 +98,46 @@ namespace DDev.Tools.Test
         }
 
         /// <summary>
+        /// Checks the dot.notation
+        /// </summary>
+        /// <param name="test"></param>
+        [TestCase("castle.black")]
+        [TestCase("the.summer.islands")]
+        [TestCase("the.forest.moon.endor")]
+        public void IsDotNotation_ShouldReturnTrue_WhenInputIsValid(string test)
+        {
+            ConventionRegex.IsDotNotation(test, maxLength: 21)
+                .Should()
+                .BeTrue();
+        }
+
+        /// <summary>
+        /// Checks the dot.notation
+        /// </summary>
+        /// <param name="test"></param>
+        [TestCase("EAST.WATCH.BY.THE.SEA")]
+        [TestCase("BALON.GREYJOY")]
+        public void IsDotNotation_ShouldTakeCaptialLetters_WhenCaptialEnumIsUsed(string test)
+        {
+            ConventionRegex.IsDotNotation(test, allowedLetters: RegexLetterCase.CapitalOnly, maxLength: 25)
+                .Should()
+                .BeTrue();
+        }
+
+        /// <summary>
+        /// Checks the dot.notation
+        /// </summary>
+        /// <param name="test"></param>
+        [TestCase("first.of.the.1st.men")]
+        [TestCase("51st.state")]
+        public void IsDotNotation_ShouldTakeacceptNumbers_WhenOptionIsSet(string test)
+        {
+            ConventionRegex.IsDotNotation(test, allowNumbers: true)
+                .Should()
+                .BeTrue();
+        }
+
+        /// <summary>
         /// Checks the snake_case
         /// </summary>
         /// <param name="test"></param>
@@ -281,6 +321,45 @@ namespace DDev.Tools.Test
         public void IsSnakeCase_ShoulRejectCapitalInputs_WhenNotPermitted(string test)
         {
             ConventionRegex.IsSnakeCase(test, maxLength: 37)
+                .Should()
+                .BeFalse();
+        }
+
+        /// <summary>
+        /// Checks the dot.notation
+        /// </summary>
+        /// <param name="test"></param>
+        [TestCase("volantis")]
+        [TestCase("Minas.Morghul")]
+        public void IsDotNotation_ShoulRejectLowerCase_WhenCaptialOnlyIsUsed(string test)
+        {
+            ConventionRegex.IsDotNotation(test, allowedLetters: RegexLetterCase.CapitalOnly)
+                .Should()
+                .BeFalse();
+        }
+
+        /// <summary>
+        /// Checks the dot.notation
+        /// </summary>
+        /// <param name="test"></param>
+        [TestCase("embrace-the-dark-side")]
+        [TestCase("ay_caramba")]
+        public void IsDotNotation_ShoulRejectInput_WhenWrongCase(string test)
+        {
+            ConventionRegex.IsDotNotation(test)
+                .Should()
+                .BeFalse();
+        }
+
+        /// <summary>
+        /// Checks the dot.notation
+        /// </summary>
+        /// <param name="test"></param>
+        [TestCase("You.shall.not.pass!")]
+        [TestCase("thats.not.a.knive,thats.a.knive")]
+        public void IsDotNotation_ShoulRejectInput_WhenForbiddenCharactersAreUsed(string test)
+        {
+            ConventionRegex.IsDotNotation(test)
                 .Should()
                 .BeFalse();
         }
