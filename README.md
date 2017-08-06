@@ -84,7 +84,7 @@ idols.Add(new TestObject("Star Wars", "Leia Organa");
 idols.Add(new TestObject("LotR", "Gandalf");
 idols.Add(new TestObject("Friends", "Joey Tribbiani");
 
-var clustered = list.ToClusteredDictionary(attr => attr.Franchise);
+var clustered = idols.ToClusteredDictionary(attr => attr.Franchise);
 // clustered:
 // { 
 //      "Star Wars" -> [ "Luke Skywalker", "Han Solo", "Leia" ],
