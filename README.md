@@ -72,16 +72,17 @@ internal class FictionCharacter
 {
     public string Franchise { get; set; }
     public string Name { get; set; }
-    // ...
 }
 
+// ..
+
 var idols = new List<FictionCharacter>();
-list.Add(new TestObject("Star Wars", "Luke Skywalker");
-list.Add(new TestObject("Star Wars", "Han Solo");
-list.Add(new TestObject("LotR", "Frodo");
-list.Add(new TestObject("Star Wars", "Leia Organa");
-list.Add(new TestObject("LotR", "Gandalf");
-list.Add(new TestObject("Friends", "Joey Tribbiani");
+idols.Add(new TestObject("Star Wars", "Luke Skywalker");
+idols.Add(new TestObject("Star Wars", "Han Solo");
+idols.Add(new TestObject("LotR", "Frodo");
+idols.Add(new TestObject("Star Wars", "Leia Organa");
+idols.Add(new TestObject("LotR", "Gandalf");
+idols.Add(new TestObject("Friends", "Joey Tribbiani");
 
 var clustered = list.ToClusteredDictionary(attr => attr.Franchise);
 // clustered:
