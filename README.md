@@ -25,12 +25,12 @@ GenericDictionary<string> dict = new GenericDictionary<string>();
 
 dict.Add("key1", "stringValue");
 dict.Add("key2", 2);
-dict.Add("key3", 3.0);
+dict.Add("key3", 3.84);
 dict.Add("key4", DateTime.UtcNow);
 
 var val1 = dict.Get<string>("key1"); // "stringValue"
 var val2 = dict.Get<int>("key2"); // 2
-var val3 = dict.Get<double>("key3"); // 3.0
+var val3 = dict.Get<double>("key3"); // 3.84
 var val4 = dict.Get<DateTime>("key4"); // {1/1/2017 - 12:00:00}
 ```
 
@@ -68,21 +68,24 @@ You can select a common attribute of the items with a lambda expression. All ite
 ```C#
 using DDev.Tools;
 
+// test dummy class
 internal class FictionCharacter
 {
     public string Franchise { get; set; }
     public string Name { get; set; }
+    
+    public FictionCharacter(string f, string n) { Franchise = f; Name = n; }
 }
 
 // ..
 
 var idols = new List<FictionCharacter>();
-idols.Add(new TestObject("Star Wars", "Luke Skywalker");
-idols.Add(new TestObject("Star Wars", "Han Solo");
-idols.Add(new TestObject("LotR", "Frodo");
-idols.Add(new TestObject("Star Wars", "Leia Organa");
-idols.Add(new TestObject("LotR", "Gandalf");
-idols.Add(new TestObject("Friends", "Joey Tribbiani");
+idols.Add(new TestObject("Star Wars", "Luke Skywalker"));
+idols.Add(new TestObject("Star Wars", "Han Solo"));
+idols.Add(new TestObject("LotR", "Frodo"));
+idols.Add(new TestObject("Star Wars", "Leia Organa"));
+idols.Add(new TestObject("LotR", "Gandalf"));
+idols.Add(new TestObject("Friends", "Joey Tribbiani"));
 
 var clustered = idols.ToClusteredDictionary(attr => attr.Franchise);
 // clustered:
