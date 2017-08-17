@@ -1,5 +1,7 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/tl89uy830l97qq6o?svg=true)](https://ci.appveyor.com/project/dlerps/ddev-tools) [![NuGet](https://img.shields.io/nuget/dt/DDev.Tools.Standard.svg)](https://preview.nuget.org/packages/DDev.Tools.Standard/)
+
 # DDev Tools
+
 **A collection of .Net tools and helper functions. Compatible with `.Net Standard 1.3` and `.Net Framework 4.6.1`**
 
 ## How to use
@@ -12,6 +14,13 @@ Install with donet CLI:
 `> dotnet add package DDev.Tools.Standard`
 
 ## Content
+
+ - [CollectionUtilities](#collectionutilities)
+ - [GenericDictionary](#genericdictionary)
+ - [ConventionRegex](#regex)
+ - [LinqUtils](#linqutils)
+ - [Safe Number Parsing](#numparsing)
+
 ### CollectionUtils
 Collection utilities are a set of extension methods. Currently there are only methods for `IDictionary`.
 
@@ -34,7 +43,7 @@ var val3 = dict.Get<double>("key3"); // 3.84
 var val4 = dict.Get<DateTime>("key4"); // {1/1/2017 - 12:00:00}
 ```
 
-### Convention Regex
+### Convention Regex <a name="regex"></a>
 Some convenience regex check for common convention styles are located in `ConventionRegex` as extension method of `string`.
 
 ```C#
@@ -94,6 +103,24 @@ var clustered = idols.ToClusteredDictionary(attr => attr.Franchise);
 //      "LotR" -> [ "Frodo", "Gandalf" ],
 //      "Friends" -> [ "Joey Tribbiani" ],
 // }
+```
+
+### Safe Number Parsing <a name="#numparsing"></a>
+
+Converting a `string` to any number in C# is always an annoying task because you either have to handle potential exceptions or have to declare an `out` variable to use the `TryParse(...)` options.
+**DDEV Tools** has extensions that wrap this and let you convert strings more easily.
+
+```C#
+using DDev.Tools.Extensions;
+
+string meaningOfLife = "42";
+int? mofInt = meaningOfLife.ToInteger();
+long? mofLong = meaningOfLife.ToLong();
+decimal? mofDec = meaningOfLife.ToDecimal();
+double? mofDouble = meaningOfLife.ToDouble();
+
+string nan = "not a number";
+int? nanInt = nan.ToInteger() // nanInt == null
 ```
 
 ## How to contribute
