@@ -19,7 +19,7 @@ Install with donet CLI:
  - [GenericDictionary](#genericdictionary)
  - [ConventionRegex](#regex)
  - [LinqUtils](#linqutils)
- - [Safe Number Parsing](#numparsing)
+ - [Safe Number Parsing](#safe-number-parsing-)
 
 ### CollectionUtils
 Collection utilities are a set of extension methods. Currently there are only methods for `IDictionary`.
