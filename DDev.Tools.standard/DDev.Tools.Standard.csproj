@@ -11,7 +11,7 @@
     <PackageProjectUrl>https://github.com/dlerps/ddev-tools</PackageProjectUrl>
     <RepositoryType>https://github.com/dlerps/ddev-tools</RepositoryType>
     <PackageTags>tools,debugging,utilities,collections</PackageTags>
-    <Version>1.3.1</Version>
+    <Version>1.4.0</Version>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageIconUrl>https://locksmith.lerps.de/ddev.png</PackageIconUrl>
   </PropertyGroup>
