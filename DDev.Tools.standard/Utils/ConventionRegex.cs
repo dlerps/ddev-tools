@@ -27,7 +27,7 @@ namespace DDev.Tools
             bool allowNumbers = true,
             RegexLetterCase allowedLetters = RegexLetterCase.LowerOnly)
         {
-            return CheckSymbolSeparatedCase(check, '-', minLength, maxLength, allowNumbers, allowedLetters);
+            return CheckSymbolSeparatedCase(check, minLength, maxLength, allowNumbers, allowedLetters, '-');
         }
 
         /// <summary>
@@ -46,7 +46,16 @@ namespace DDev.Tools
             bool allowNumbers = true,
             RegexLetterCase allowedLetters = RegexLetterCase.LowerOnly)
         {
-            return CheckSymbolSeparatedCase(check, '_', minLength, maxLength, allowNumbers, allowedLetters);
+            return CheckSymbolSeparatedCase(check, minLength, maxLength, allowNumbers, allowedLetters, '_');
+        }
+
+        public static bool IsMixedKebabSnakeCase(this string check,
+            int minLength = 2,
+            int maxLength = 20,
+            bool allowNumbers = true,
+            RegexLetterCase allowedLetters = RegexLetterCase.LowerOnly)
+        {
+            return CheckSymbolSeparatedCase(check, minLength, maxLength, allowNumbers, allowedLetters, '_', '-');
         }
 
         /// <summary>
@@ -65,7 +74,7 @@ namespace DDev.Tools
             bool allowNumbers = true,
             RegexLetterCase allowedLetters = RegexLetterCase.LowerOnly)
         {
-            return CheckSymbolSeparatedCase(check, '.', minLength, maxLength, allowNumbers, allowedLetters);
+            return CheckSymbolSeparatedCase(check, minLength, maxLength, allowNumbers, allowedLetters, '.');
         }
 
         /// <summary>
@@ -79,11 +88,11 @@ namespace DDev.Tools
         /// <returns></returns>
         private static bool CheckSymbolSeparatedCase(
             string check, 
-            char symbol, 
             int minLength, 
             int maxLength, 
             bool allowNumbers,
-            RegexLetterCase allowedLetters)
+            RegexLetterCase allowedLetters,
+            params char[] symbols)
         {
             ValidateLengthInputs(minLength, maxLength);
 
@@ -111,7 +120,7 @@ namespace DDev.Tools
                     break;
             }
 
-            string pattern = String.Format("^[{2}{0}]+([{1}]{{1}}[{2}{0}]+)*$", numPattern, symbol, letterPattern);
+            string pattern = String.Format("^[{2}{0}]+([{1}]{{1}}[{2}{0}]+)*$", numPattern, String.Join(String.Empty, symbols), letterPattern);
 
             return check.IsRegexMatch(pattern);
         }

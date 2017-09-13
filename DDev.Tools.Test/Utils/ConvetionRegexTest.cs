@@ -98,6 +98,19 @@ namespace DDev.Tools.Test
         }
 
         /// <summary>
+        /// Checks the kebab-case
+        /// </summary>
+        /// <param name="test"></param>
+        [TestCase("brooklyn_99")]
+        [TestCase("the-upside_down")]
+        public void IsMixedKebabSnakeCase_ShouldReturnTrue_WhenInputIsValid(string test)
+        {
+            ConventionRegex.IsMixedKebabSnakeCase(test)
+                .Should()
+                .BeTrue();
+        }
+
+        /// <summary>
         /// Checks the dot.notation
         /// </summary>
         /// <param name="test"></param>
@@ -159,6 +172,19 @@ namespace DDev.Tools.Test
         public void IsKebabCase_ShoulAcceptCapitalLetters_WhenEnumBothIsUsed(string test)
         {
             ConventionRegex.IsKebabCase(test, allowedLetters: RegexLetterCase.Both)
+                .Should()
+                .BeTrue();
+        }
+
+        /// <summary>
+        /// Checks the kebab-case
+        /// </summary>
+        /// <param name="test"></param>
+        [TestCase("Essos_over-Westeros")]
+        [TestCase("the-army-of-the_DEAD")]
+        public void IsMixedKebabSnakeCase_ShoulAcceptCapitalLetters_WhenEnumBothIsUsed(string test)
+        {
+            ConventionRegex.IsMixedKebabSnakeCase(test, allowedLetters: RegexLetterCase.Both)
                 .Should()
                 .BeTrue();
         }
@@ -372,6 +398,20 @@ namespace DDev.Tools.Test
         public void IsSnakeCase_ShoulRejectNumbers_WhenAllowNumbersIsFalse(string test)
         {
             ConventionRegex.IsSnakeCase(test, allowNumbers: false)
+                .Should()
+                .BeFalse();
+        }
+
+        /// <summary>
+        /// Checks negagive for number inputs
+        /// </summary>
+        /// <param name="test"></param>
+        [TestCase("dragon.stone")]
+        [TestCase("the.red-keep")]
+        [TestCase("serving.the-faceless_god")]
+        public void IsMixedKebabSnakeCase_ShoulRejectDots(string test)
+        {
+            ConventionRegex.IsSnakeCase(test, allowNumbers: false, maxLength: 30)
                 .Should()
                 .BeFalse();
         }
