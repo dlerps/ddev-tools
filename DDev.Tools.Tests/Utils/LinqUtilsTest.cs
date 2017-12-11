@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,20 +6,20 @@ using System.Threading.Tasks;
 
 using DDev.Tools;
 using FluentAssertions;
+using Xunit;
 
 namespace DDev.Tools.Test
 {
-    [TestFixture]
-    [Author("Daniel Lerps")]
     public class LinqUtilsTest
     {
         /// <summary>
         /// Tests the clustering
         /// </summary>
         /// <param name="key"></param>
-        /// <param name="values"></param>
-        [TestCase(1, new string[] { "astapor", "meereen", "braavos" })]
-        [TestCase(6, new string[] { "kings landing", "winterfell", "pentos" })]
+        /// <param name="values"></param>  
+        [Theory]
+        [InlineData(1, new string[] { "astapor", "meereen", "braavos" })]
+        [InlineData(6, new string[] { "kings landing", "winterfell", "pentos" })]
         public void ToClusteredDictionary_ShouldCreateSubset_WhenKeyMatches(int key, string[] values)
         {
             List<TestObject<int, string>> testObjects = new List<TestObject<int, string>>(values.Length);
@@ -50,7 +49,7 @@ namespace DDev.Tools.Test
         /// <summary>
         /// Checks if different keys cause multiple subsets by the clusered dictionary method
         /// </summary>
-        [Test]
+        [Fact]
         public void ToClusteredDictionary_ShouldCreate2Subsets_WhenThereAre2Keys()
         {
             List<TestObject<DateTime, int>> testObjects = new List<TestObject<DateTime, int>>(3);

@@ -1,20 +1,17 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using DDev.Tools;
-using NUnit.Framework;
 using FluentAssertions;
+using Xunit;
 
 namespace DDev.Tools.Test
 {
-    [TestFixture]
-    [Author("Daniel Lerps")]
     public class CollectionUtilsTest
     {
         /// <summary>
         /// Tests the generic parsing of dictionary values with strings
         /// </summary>
-        [TestCase]
+        [Fact]
         public void ParseValue_ShouldReturnValue_WhenOfTypeString()
         {
             DictionaryTypeTest<string>("khalesie", "daenerys");
@@ -23,7 +20,7 @@ namespace DDev.Tools.Test
         /// <summary>
         /// Tests the generic parsing of dictionary values with strings
         /// </summary>
-        [TestCase]
+        [Fact]
         public void ParseValue_ShouldReturnValue_WhenOfTypeInteger()
         {
             DictionaryTypeTest<int>("season", 7);
@@ -32,7 +29,7 @@ namespace DDev.Tools.Test
         /// <summary>
         /// Tests the generic parsing of dictionary values with strings
         /// </summary>
-        [TestCase]
+        [Fact]
         public void ParseValue_ShouldReturnValue_WhenOfTypeDouble()
         {
             DictionaryTypeTest<double>("purpose of life", 42.0);
@@ -41,7 +38,7 @@ namespace DDev.Tools.Test
         /// <summary>
         /// Tests the generic parsing of dictionary values with strings
         /// </summary>
-        [TestCase]
+        [Fact]
         public void ParseValue_ShouldReturnValue_WhenOfTypeDateTime()
         {
             DictionaryTypeTest<DateTime>("star wars day", new DateTime(1978, 5, 5));
@@ -50,7 +47,7 @@ namespace DDev.Tools.Test
         /// <summary>
         /// Tests the generic parsing of dictionary values with strings
         /// </summary>
-        [TestCase]
+        [Fact]
         public void ParseValue_ShouldReturnValue_WhenOfTypeDecimal()
         {
             DictionaryTypeTest<decimal>("credits", 10000m);

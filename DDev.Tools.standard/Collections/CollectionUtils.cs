@@ -8,7 +8,23 @@ namespace DDev.Tools
     {
         /// <summary>
         /// Parses a generic value from a Dictionary. If the value does not exist, the 
-        /// defualt value of the type is returned.
+        /// default value of the type is returned.
+        /// </summary>
+        /// <param name="vals"></param>
+        /// <param name="key"></param>
+        /// <param name="defaultVal"></param>
+        /// <returns></returns>
+        public static PType ParseValue<K, PType>(this IDictionary<K, object> vals, K key, PType defaultVal = default(PType))
+        {
+            if (vals.ContainsKey(key) && vals[key] is PType)
+                return (PType) vals[key];
+
+            return defaultVal;
+        }
+
+        /// <summary>
+        /// Parses a generic value from a Dictionary. If the value does not exist, the 
+        /// default value of the type is returned.
         /// </summary>
         /// <param name="vals"></param>
         /// <param name="key"></param>
@@ -16,10 +32,7 @@ namespace DDev.Tools
         /// <returns></returns>
         public static PType ParseValue<PType>(this IDictionary<string, object> vals, string key, PType defaultVal = default(PType))
         {
-            if (vals.ContainsKey(key) && vals[key] is PType)
-                return (PType)vals[key];
-
-            return defaultVal;
+            return ParseValue<string, PType>(vals, key, defaultVal);
         }
 
         // <summary>
