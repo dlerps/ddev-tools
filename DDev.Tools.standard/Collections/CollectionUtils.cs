@@ -8,7 +8,7 @@ namespace DDev.Tools
     {
         /// <summary>
         /// Parses a generic value from a Dictionary. If the value does not exist, the 
-        /// defualt value of the type is returned.
+        /// default value of the type is returned.
         /// </summary>
         /// <param name="vals"></param>
         /// <param name="key"></param>
@@ -24,7 +24,7 @@ namespace DDev.Tools
 
         /// <summary>
         /// Parses a generic value from a Dictionary. If the value does not exist, the 
-        /// defualt value of the type is returned.
+        /// default value of the type is returned.
         /// </summary>
         /// <param name="vals"></param>
         /// <param name="key"></param>
