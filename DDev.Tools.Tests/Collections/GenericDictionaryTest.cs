@@ -5,32 +5,31 @@ using System.Text;
 using System.Threading.Tasks;
 
 using DDev.Tools;
-using NUnit.Framework;
 using FluentAssertions;
+using Xunit;
 
 namespace DDev.Tools.Test
 {
-    [Author("Daniel Lerps")]
-    [TestFixture]
     public class GenericDictionaryTest
     {
-        [Test]
-        public void Get_ShouldReturnValue_WhenOfTypeString(
-            [Values(1, 10, 5)] int key,
-            [Values("davoagedy", "atroksie", "jorraelza")] string val)
+        [Theory]
+        [InlineData(1, "davoagedy")]
+        [InlineData(10, "atroksie")]
+        [InlineData(5, "jorraelza")]
+        public void Get_ShouldReturnValue_WhenOfTypeString(int key, string val)
         {
             DoValueTest<int, string>(key, val);
         }
 
-        [Test]
-        public void Get_ShouldReturnValue_WhenOfTypeInteger(
-            [Values(0, -6, 11)] int key,
-            [Values(5, 0, 1337)] int val)
+        [Theory]
+        [InlineData(0, -6)]
+        [InlineData(50, 1337)]
+        public void Get_ShouldReturnValue_WhenOfTypeInteger(int key, int val)
         {
             DoValueTest<int, int>(key, val);
         }
 
-        [Test]
+        [Fact]
         public void Get_ShouldReturnValue_WhenOfTypeDateTime()
         {
             DoValueTest<string, DateTime>("today", DateTime.UtcNow);

@@ -1,18 +1,17 @@
-﻿using NUnit.Framework;
-using System;
+﻿using System;
 
 using DDev.Tools.Extensions;
 using FluentAssertions;
+using Xunit;
 
 namespace DDev.Tools.Test.Utils
 {
-    [TestFixture]
-    [Author("Daniel Lerps")]
     public class NumericUtilsTest
     {
-        [TestCase("13", 13)]
-        [TestCase("-98", -98)]
-        [TestCase("0", 0)]
+        [Theory]
+        [InlineData("13", 13)]
+        [InlineData("-98", -98)]
+        [InlineData("0", 0)]
         public void ToInteger_ShouldParseAnIntegerValue(string s, int n)
         {
             s.ToInteger()
@@ -20,11 +19,12 @@ namespace DDev.Tools.Test.Utils
                 .Be(n);
         }
 
-        [TestCase("13h")]
-        [TestCase("-99-")]
-        [TestCase("0 + 3")]
-        [TestCase("4+")]
-        [TestCase("7*88")]
+        [Theory]
+        [InlineData("13h")]
+        [InlineData("-99-")]
+        [InlineData("0 + 3")]
+        [InlineData("4+")]
+        [InlineData("7*88")]
         public void ToInteger_ShouldReturnNull_WhenInputIsNotNumeric(string s)
         {
             s.ToInteger()
@@ -32,9 +32,10 @@ namespace DDev.Tools.Test.Utils
                 .BeNull();
         }
 
-        [TestCase("7969869883", 7969869883)]
-        [TestCase("-2978001238", -2978001238)]
-        [TestCase("00", 0)]
+        [Theory]
+        [InlineData("7969869883", 7969869883)]
+        [InlineData("-2978001238", -2978001238)]
+        [InlineData("00", 0)]
         public void ToLong_ShouldParseALongValue(string s, long n)
         {
             s.ToLong()
@@ -42,11 +43,12 @@ namespace DDev.Tools.Test.Utils
                 .Be(n);
         }
 
-        [TestCase("5oo")]
-        [TestCase("notanumber")]
-        [TestCase("")]
-        [TestCase("--8")]
-        [TestCase("5^2")]
+        [Theory]
+        [InlineData("5oo")]
+        [InlineData("notanumber")]
+        [InlineData("")]
+        [InlineData("--8")]
+        [InlineData("5^2")]
         public void ToLong_ShouldReturnNull_WhenInputIsNotNumeric(string s)
         {
             s.ToLong()
@@ -54,9 +56,10 @@ namespace DDev.Tools.Test.Utils
                 .BeNull();
         }
 
-        [TestCase("13.22", 13.22)]
-        [TestCase("-02.1", -2.1)]
-        [TestCase("0.0", 0)]
+        [Theory]
+        [InlineData("13.22", 13.22)]
+        [InlineData("-02.1", -2.1)]
+        [InlineData("0.0", 0)]
         public void ToDecimal_ShouldParseADecimalValue(string s, decimal n)
         {
             s.ToDecimal()
@@ -64,11 +67,12 @@ namespace DDev.Tools.Test.Utils
                 .Be(n);
         }
 
-        [TestCase("0,8")]
-        [TestCase("9..0")]
-        [TestCase("122.03.2")]
-        [TestCase("*")]
-        [TestCase("5^2")]
+        [Theory]
+        [InlineData("0,8")]
+        [InlineData("9..0")]
+        [InlineData("122.03.2")]
+        [InlineData("*")]
+        [InlineData("5^2")]
         public void ToDecimal_ShouldReturnNull_WhenInputIsNotNumeric(string s)
         {
             s.ToLong()
@@ -76,10 +80,11 @@ namespace DDev.Tools.Test.Utils
                 .BeNull();
         }
 
-        [TestCase("45.22100", 45.221)]
-        [TestCase("-122333.09734234", -122333.09734234)]
-        [TestCase(".7", 0.7)]
-        [TestCase("0.0", 0)]
+        [Theory]
+        [InlineData("45.22100", 45.221)]
+        [InlineData("-122333.09734234", -122333.09734234)]
+        [InlineData(".7", 0.7)]
+        [InlineData("0.0", 0)]
         public void ToDouble_ShouldParseADoubleValue(string s, decimal n)
         {
             s.ToDecimal()
@@ -87,10 +92,11 @@ namespace DDev.Tools.Test.Utils
                 .Be(n);
         }
 
-        [TestCase("100,18")]
-        [TestCase("1009.")]
-        [TestCase(",9")]
-        [TestCase("_")]
+        [Theory]
+        [InlineData("100,18")]
+        [InlineData("1009.")]
+        [InlineData(",9")]
+        [InlineData("_")]
         public void ToDouble_ShouldReturnNull_WhenInputIsNotNumeric(string s)
         {
             s.ToLong()

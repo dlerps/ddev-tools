@@ -1,15 +1,13 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xunit;
 
 namespace DDev.Tools.Test
 {
-    [TestFixture]
-    [Author("Daniel Lerps")]
     public class ConvetionRegexTest
     {
         #region Positive Tests
@@ -18,9 +16,10 @@ namespace DDev.Tools.Test
         /// Checks the lowerCamelCase check
         /// </summary>
         /// <param name="test"></param>
-        [TestCase("atroksieMeansOwl")]
-        [TestCase("kirineMeansHappy")]
-        [TestCase("syzMeansGood")]
+        [Theory]
+        [InlineData("atroksieMeansOwl")]
+        [InlineData("kirineMeansHappy")]
+        [InlineData("syzMeansGood")]
         public void IsLowerCamelCase_ShouldReturnTrue_WhenInputIsValid(string test)
         {
             ConventionRegex.IsLowerCamelCase(test)
@@ -32,9 +31,10 @@ namespace DDev.Tools.Test
         /// Checks the lowerCamelCase check
         /// </summary>
         /// <param name="test"></param>
-        [TestCase("mayThe4BeWithYou")]
-        [TestCase("illBeThere4You")]
-        [TestCase("theCrazy88")]
+        [Theory]
+        [InlineData("mayThe4BeWithYou")]
+        [InlineData("illBeThere4You")]
+        [InlineData("theCrazy88")]
         public void IsLowerCamelCase_ShouldReturnTrue_WhenInputHasDigits(string test)
         {
             ConventionRegex.IsLowerCamelCase(test, allowNumbers: true)
@@ -46,9 +46,10 @@ namespace DDev.Tools.Test
         /// Checks the UpperCamelCase check
         /// </summary>
         /// <param name="test"></param>
-        [TestCase("TheNightsWatch")]
-        [TestCase("MiddleEarth")]
-        [TestCase("EvergreenTerrace")]
+        [Theory]
+        [InlineData("TheNightsWatch")]
+        [InlineData("MiddleEarth")]
+        [InlineData("EvergreenTerrace")]
         public void IsUpperCamelCase_ShouldReturnTrue_WhenInputIsValid(string test)
         {
             ConventionRegex.IsUpperCamelCase(test)
@@ -60,8 +61,9 @@ namespace DDev.Tools.Test
         /// Checks if the IsUpperCamelCase allows numbers
         /// </summary>
         /// <param name="test"></param>
-        [TestCase("Yavin4RebelBase")]
-        [TestCase("Red5Batallion")]
+        [Theory]
+        [InlineData("Yavin4RebelBase")]
+        [InlineData("Red5Batallion")]
         public void IsUpperCamelCase_ShouldReturnTrue_WhenInputHasDigits(string test)
         {
             ConventionRegex.IsUpperCamelCase(test, allowNumbers: true)
@@ -73,9 +75,10 @@ namespace DDev.Tools.Test
         /// Checks the kebab-case
         /// </summary>
         /// <param name="test"></param>
-        [TestCase("bat-girl")]
-        [TestCase("the-incredible-hulk")]
-        [TestCase("darth-vader")]
+        [Theory]
+        [InlineData("bat-girl")]
+        [InlineData("the-incredible-hulk")]
+        [InlineData("darth-vader")]
         public void IsKebabCase_ShouldReturnTrue_WhenInputIsValid(string test)
         {
             ConventionRegex.IsKebabCase(test)
@@ -87,9 +90,10 @@ namespace DDev.Tools.Test
         /// Checks the kebab-case
         /// </summary>
         /// <param name="test"></param>
-        [TestCase("iron_man")]
-        [TestCase("winter_is_coming")]
-        [TestCase("minions")]
+        [Theory]
+        [InlineData("iron_man")]
+        [InlineData("winter_is_coming")]
+        [InlineData("minions")]
         public void IsSnakeCase_ShouldReturnTrue_WhenInputIsValid(string test)
         {
             ConventionRegex.IsSnakeCase(test)
@@ -101,8 +105,9 @@ namespace DDev.Tools.Test
         /// Checks the kebab-case
         /// </summary>
         /// <param name="test"></param>
-        [TestCase("brooklyn_99")]
-        [TestCase("the-upside_down")]
+        [Theory]
+        [InlineData("brooklyn_99")]
+        [InlineData("the-upside_down")]
         public void IsMixedKebabSnakeCase_ShouldReturnTrue_WhenInputIsValid(string test)
         {
             ConventionRegex.IsMixedKebabSnakeCase(test)
@@ -114,9 +119,10 @@ namespace DDev.Tools.Test
         /// Checks the dot.notation
         /// </summary>
         /// <param name="test"></param>
-        [TestCase("castle.black")]
-        [TestCase("the.summer.islands")]
-        [TestCase("the.forest.moon.endor")]
+        [Theory]
+        [InlineData("castle.black")]
+        [InlineData("the.summer.islands")]
+        [InlineData("the.forest.moon.endor")]
         public void IsDotNotation_ShouldReturnTrue_WhenInputIsValid(string test)
         {
             ConventionRegex.IsDotNotation(test, maxLength: 21)
@@ -128,8 +134,9 @@ namespace DDev.Tools.Test
         /// Checks the dot.notation
         /// </summary>
         /// <param name="test"></param>
-        [TestCase("EAST.WATCH.BY.THE.SEA")]
-        [TestCase("BALON.GREYJOY")]
+        [Theory]
+        [InlineData("EAST.WATCH.BY.THE.SEA")]
+        [InlineData("BALON.GREYJOY")]
         public void IsDotNotation_ShouldTakeCaptialLetters_WhenCaptialEnumIsUsed(string test)
         {
             ConventionRegex.IsDotNotation(test, allowedLetters: RegexLetterCase.CapitalOnly, maxLength: 25)
@@ -141,8 +148,9 @@ namespace DDev.Tools.Test
         /// Checks the dot.notation
         /// </summary>
         /// <param name="test"></param>
-        [TestCase("first.of.the.1st.men")]
-        [TestCase("51st.state")]
+        [Theory]
+        [InlineData("first.of.the.1st.men")]
+        [InlineData("51st.state")]
         public void IsDotNotation_ShouldTakeacceptNumbers_WhenOptionIsSet(string test)
         {
             ConventionRegex.IsDotNotation(test, allowNumbers: true)
@@ -154,8 +162,9 @@ namespace DDev.Tools.Test
         /// Checks the snake_case
         /// </summary>
         /// <param name="test"></param>
-        [TestCase("Padme_Amidala")]
-        [TestCase("my_little_Pony")]
+        [Theory]
+        [InlineData("Padme_Amidala")]
+        [InlineData("my_little_Pony")]
         public void IsSnakeCase_ShoulAcceptCapitalLetters_WhenEnumBothIsUsed(string test)
         {
             ConventionRegex.IsSnakeCase(test, allowedLetters: RegexLetterCase.Both)
@@ -167,8 +176,9 @@ namespace DDev.Tools.Test
         /// Checks the kebab-case
         /// </summary>
         /// <param name="test"></param>
-        [TestCase("the-Hunger-Games")]
-        [TestCase("Luke-Skywalker")]
+        [Theory]
+        [InlineData("the-Hunger-Games")]
+        [InlineData("Luke-Skywalker")]
         public void IsKebabCase_ShoulAcceptCapitalLetters_WhenEnumBothIsUsed(string test)
         {
             ConventionRegex.IsKebabCase(test, allowedLetters: RegexLetterCase.Both)
@@ -180,8 +190,9 @@ namespace DDev.Tools.Test
         /// Checks the kebab-case
         /// </summary>
         /// <param name="test"></param>
-        [TestCase("Essos_over-Westeros")]
-        [TestCase("the-army-of-the_DEAD")]
+        [Theory]
+        [InlineData("Essos_over-Westeros")]
+        [InlineData("the-army-of-the_DEAD")]
         public void IsMixedKebabSnakeCase_ShoulAcceptCapitalLetters_WhenEnumBothIsUsed(string test)
         {
             ConventionRegex.IsMixedKebabSnakeCase(test, allowedLetters: RegexLetterCase.Both)
@@ -197,8 +208,9 @@ namespace DDev.Tools.Test
         /// Checks the kebab-case max length
         /// </summary>
         /// <param name="test"></param>
-        [TestCase("daenerys-stormborn-of-house-targeryen")]
-        [TestCase("the-wizard-of-the-north")]
+        [Theory]
+        [InlineData("daenerys-stormborn-of-house-targeryen")]
+        [InlineData("the-wizard-of-the-north")]
         public void IsKebabCase_ShoulAcceptLongInputs_WhenMaxIsChanged(string test)
         {
             ConventionRegex.IsKebabCase(test, maxLength: 37)
@@ -210,8 +222,9 @@ namespace DDev.Tools.Test
         /// Checks the snake_case max length
         /// </summary>
         /// <param name="test"></param>
-        [TestCase("1_ring_to_rule_them_all")]
-        [TestCase("and_now_his_watch_has_ended")]
+        [Theory]
+        [InlineData("1_ring_to_rule_them_all")]
+        [InlineData("and_now_his_watch_has_ended")]
         public void IsSnakeCase_ShoulAcceptLongInputs_WhenMaxIsChanged(string test)
         {
             ConventionRegex.IsSnakeCase(test, maxLength: 28, allowNumbers: true)
@@ -223,8 +236,9 @@ namespace DDev.Tools.Test
         /// Checks the UpperCamelCase max length
         /// </summary>
         /// <param name="test"></param>
-        [TestCase("ISwaerByMyPrettyPinkBonnetIEndYou")]
-        [TestCase("ALannisterAlwaysPaysHisDebts")]
+        [Theory]
+        [InlineData("ISwaerByMyPrettyPinkBonnetIEndYou")]
+        [InlineData("ALannisterAlwaysPaysHisDebts")]
         public void IsUpperCamelCase_ShoulAcceptLongInputs_WhenMaxIsChanged(string test)
         {
             ConventionRegex.IsUpperCamelCase(test, maxLength: 50)
@@ -236,8 +250,9 @@ namespace DDev.Tools.Test
         /// Checks the lowerCamelCase max length
         /// </summary>
         /// <param name="test"></param>
-        [TestCase("theClanOfTheAssissins")]
-        [TestCase("mayTheOddsBeEverInYourFavour")]
+        [Theory]
+        [InlineData("theClanOfTheAssissins")]
+        [InlineData("mayTheOddsBeEverInYourFavour")]
         public void IsLowerCamelCase_ShoulAcceptLongInputs_WhenMaxIsChanged(string test)
         {
             ConventionRegex.IsLowerCamelCase(test, maxLength: 40)
@@ -249,8 +264,9 @@ namespace DDev.Tools.Test
         /// Checks the kebab-case min length
         /// </summary>
         /// <param name="test"></param>
-        [TestCase("my-prescious")]
-        [TestCase("its-a-trap")]
+        [Theory]
+        [InlineData("my-prescious")]
+        [InlineData("its-a-trap")]
         public void IsKebabCase_ShoulRejectShortInputs_WhenNotMatchingMinLength(string test)
         {
             ConventionRegex.IsKebabCase(test, minLength: 15, maxLength: 30)
@@ -262,8 +278,9 @@ namespace DDev.Tools.Test
         /// Checks the camelCase min length
         /// </summary>
         /// <param name="test"></param>
-        [TestCase("ValarMorghulis")]
-        [TestCase("ValarDohaerys")]
+        [Theory]
+        [InlineData("ValarMorghulis")]
+        [InlineData("ValarDohaerys")]
         public void IsUpperCamelCase_ShoulRejectShortInputs_WhenNotMatchingMinLength(string test)
         {
             ConventionRegex.IsUpperCamelCase(test, minLength: 15, maxLength: 30)
@@ -279,8 +296,9 @@ namespace DDev.Tools.Test
         /// Checks the camelCase
         /// </summary>
         /// <param name="test"></param>
-        [TestCase("the_king_of_the_north")]
-        [TestCase("Homer Simposon")]
+        [Theory]
+        [InlineData("the_king_of_the_north")]
+        [InlineData("Homer Simposon")]
         public void IsUpperCamelCase_ShoulRejectInputs_WhenInWrongFormat(string test)
         {
             ConventionRegex.IsUpperCamelCase(test, maxLength: 40)
@@ -292,8 +310,9 @@ namespace DDev.Tools.Test
         /// Checks the camelCase
         /// </summary>
         /// <param name="test"></param>
-        [TestCase("FitzChilvallryFarseer")]
-        [TestCase("ship-of-firefly-class")]
+        [Theory]
+        [InlineData("FitzChilvallryFarseer")]
+        [InlineData("ship-of-firefly-class")]
         public void IsLowerCamelCase_ShoulRejectInputs_WhenInWrongFormat(string test)
         {
             ConventionRegex.IsLowerCamelCase(test, maxLength: 40)
@@ -305,8 +324,9 @@ namespace DDev.Tools.Test
         /// Checks the sanke_case
         /// </summary>
         /// <param name="test"></param>
-        [TestCase("the-big-bang-theory")]
-        [TestCase("death_ all_mankind")]
+        [Theory]
+        [InlineData("the-big-bang-theory")]
+        [InlineData("death_ all_mankind")]
         public void IsSnakeCase_ShoulRejectInputs_WhenInWrongFormat(string test)
         {
             ConventionRegex.IsSnakeCase(test)
@@ -318,8 +338,9 @@ namespace DDev.Tools.Test
         /// Checks the kebab-case
         /// </summary>
         /// <param name="test"></param>
-        [TestCase("Tatooine")]
-        [TestCase("joey_tribbiani")]
+        [Theory]
+        [InlineData("Tatooine")]
+        [InlineData("joey_tribbiani")]
         public void IsKebabCase_ShoulRejectInputs_WhenInWrongFormat(string test)
         {
             ConventionRegex.IsKebabCase(test)
@@ -331,7 +352,8 @@ namespace DDev.Tools.Test
         /// Checks the kebab-case
         /// </summary>
         /// <param name="test"></param>
-        [TestCase("embrace-the-dark-Side")]
+        [Theory]
+        [InlineData("embrace-the-dark-Side")]
         public void IsKebabCase_ShoulRejectCapitalInputs_WhenNotPermitted(string test)
         {
             ConventionRegex.IsSnakeCase(test, maxLength: 25)
@@ -343,7 +365,8 @@ namespace DDev.Tools.Test
         /// Checks the snake_case
         /// </summary>
         /// <param name="test"></param>
-        [TestCase("Yippi_kay_yay_motherfucker")]
+        [Theory]
+        [InlineData("Yippi_kay_yay_motherfucker")]
         public void IsSnakeCase_ShoulRejectCapitalInputs_WhenNotPermitted(string test)
         {
             ConventionRegex.IsSnakeCase(test, maxLength: 37)
@@ -355,8 +378,9 @@ namespace DDev.Tools.Test
         /// Checks the dot.notation
         /// </summary>
         /// <param name="test"></param>
-        [TestCase("volantis")]
-        [TestCase("Minas.Morghul")]
+        [Theory]
+        [InlineData("volantis")]
+        [InlineData("Minas.Morghul")]
         public void IsDotNotation_ShoulRejectLowerCase_WhenCaptialOnlyIsUsed(string test)
         {
             ConventionRegex.IsDotNotation(test, allowedLetters: RegexLetterCase.CapitalOnly)
@@ -368,8 +392,9 @@ namespace DDev.Tools.Test
         /// Checks the dot.notation
         /// </summary>
         /// <param name="test"></param>
-        [TestCase("embrace-the-dark-side")]
-        [TestCase("ay_caramba")]
+        [Theory]
+        [InlineData("embrace-the-dark-side")]
+        [InlineData("ay_caramba")]
         public void IsDotNotation_ShoulRejectInput_WhenWrongCase(string test)
         {
             ConventionRegex.IsDotNotation(test)
@@ -381,8 +406,9 @@ namespace DDev.Tools.Test
         /// Checks the dot.notation
         /// </summary>
         /// <param name="test"></param>
-        [TestCase("You.shall.not.pass!")]
-        [TestCase("thats.not.a.knive,thats.a.knive")]
+        [Theory]
+        [InlineData("You.shall.not.pass!")]
+        [InlineData("thats.not.a.knive,thats.a.knive")]
         public void IsDotNotation_ShoulRejectInput_WhenForbiddenCharactersAreUsed(string test)
         {
             ConventionRegex.IsDotNotation(test)
@@ -394,7 +420,8 @@ namespace DDev.Tools.Test
         /// Checks negagive for number inputs
         /// </summary>
         /// <param name="test"></param>
-        [TestCase("there_are_5_xmen")]
+        [Theory]
+        [InlineData("there_are_5_xmen")]
         public void IsSnakeCase_ShoulRejectNumbers_WhenAllowNumbersIsFalse(string test)
         {
             ConventionRegex.IsSnakeCase(test, allowNumbers: false)
@@ -406,9 +433,10 @@ namespace DDev.Tools.Test
         /// Checks negagive for number inputs
         /// </summary>
         /// <param name="test"></param>
-        [TestCase("dragon.stone")]
-        [TestCase("the.red-keep")]
-        [TestCase("serving.the-faceless_god")]
+        [Theory]
+        [InlineData("dragon.stone")]
+        [InlineData("the.red-keep")]
+        [InlineData("serving.the-faceless_god")]
         public void IsMixedKebabSnakeCase_ShoulRejectDots(string test)
         {
             ConventionRegex.IsSnakeCase(test, allowNumbers: false, maxLength: 30)
@@ -420,7 +448,8 @@ namespace DDev.Tools.Test
         /// Checks negagive for number inputs
         /// </summary>
         /// <param name="test"></param>
-        [TestCase("TheAnswerToTheUltimateQuestionIs42")]
+        [Theory]
+        [InlineData("TheAnswerToTheUltimateQuestionIs42")]
         public void IsUpperCamelCase_ShoulRejectNumbers_WhenAllowNumbersIsFalse(string test)
         {
             ConventionRegex.IsUpperCamelCase(test, allowNumbers: false, maxLength: 50)
@@ -432,7 +461,8 @@ namespace DDev.Tools.Test
         /// Checks negagive for number inputs
         /// </summary>
         /// <param name="test"></param>
-        [TestCase("theOddsAre100MillionToOne")]
+        [Theory]
+        [InlineData("theOddsAre100MillionToOne")]
         public void IsLowerCamelCase_ShoulRejectNumbers_WhenAllowNumbersIsFalse(string test)
         {
             ConventionRegex.IsLowerCamelCase(test, allowNumbers: false, maxLength: 30)
@@ -444,7 +474,8 @@ namespace DDev.Tools.Test
         /// Checks negagive for number inputs
         /// </summary>
         /// <param name="test"></param>
-        [TestCase("i-see-double-4-krusties")]
+        [Theory]
+        [InlineData("i-see-double-4-krusties")]
         public void IsKebabCase_ShoulRejectNumbers_WhenAllowNumbersIsFalse(string test)
         {
             ConventionRegex.IsKebabCase(test, allowNumbers: false, maxLength: 30)
