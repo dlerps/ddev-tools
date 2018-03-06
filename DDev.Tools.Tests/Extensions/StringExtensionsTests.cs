@@ -67,9 +67,9 @@ namespace DDev.Tools.Tests.Extensions
         [InlineData("Lu Skywalr", "{0}ke", new string[] { "u", "l" }, "Luke Skywalker")]
         public void ExtendWithPattern_ShouldExtendEachOccurance(string s, string pattern, string[] replacements, string expected)
         {
-            s.ExtendWithPattern("-{0}", new string[] { })
+            s.ExtendWithPattern(pattern, replacements)
                 .Should()
-                .Be(s);
+                .Be(expected);
         }
     }
 }
